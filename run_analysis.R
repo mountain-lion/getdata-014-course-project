@@ -36,7 +36,7 @@ format_column_names <- function(columns,type)
   col_names <- columns
   col_names <-gsub("Acc", " Activity ", col_names)
   
-  col_names <-grep("Activity", col_names,value=TRUE)
+  #col_names <-grep("Activity", col_names,value=TRUE)
   
   col_names <-gsub("fBody", "Frequency Domain Body", col_names)
   
@@ -47,16 +47,18 @@ format_column_names <- function(columns,type)
   if(type=="mean")
   {
     col_names<-gsub("-mean()", " Average", col_names)
+    col_names <-gsub("[(]", "", col_names)
+    
+    col_names <-gsub("[)]", "", col_names)
   }
   
   if(type=="std")
   {
     col_names<-gsub("-std()", " Standard Deviation", col_names)
+    col_names <-gsub("[(]", "", col_names)
+    
+    col_names <-gsub("[)]", "", col_names)
   }
-  
-  col_names <-gsub("[(]", "", col_names)
-  
-  col_names <-gsub("[)]", "", col_names)
   
   return (col_names)
 }
@@ -65,19 +67,21 @@ mean_cols <- format_column_names(mean_cols, "mean")
 std_cols <- format_column_names(std_cols, "std")
 #End of Step 3 of 5
 
-#Step 4 of 5: Appropriately labels the data set with descriptive variable names. 
+#Step 4 of 5: Appropriately labels the data set with descriptive variable names.
+
 merged_slice <- merged_df[,slice_cols]
 
 slice_cols <- format_column_names(slice_cols, "mean")
 slice_cols <- format_column_names(slice_cols, "std")
 
 colnames(merged_slice) <- slice_cols
+
+activity_slice <- merged_slice[,grep("Activity", slice_cols,value=TRUE)]
 #End of Step 4 of 5
 
 #Step 5 of 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-mean_slice <- merged_slice[,mean_cols]
-
+mean_activity_slice <- merged_slice[,grep("Activity", mean_cols,value=TRUE)]
 #End of Step 5 of 5
 
-write.table(mean_slice, "./data/tidy_data.txt", sep="\t",row.name=FALSE) 
+write.table(mean_activity_slice, "./data/tidy_data.txt", sep="\t",row.name=FALSE) 
