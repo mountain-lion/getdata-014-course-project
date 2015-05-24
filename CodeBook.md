@@ -127,7 +127,7 @@ This dataset is distributed AS-IS and no responsibility implied or explicit can 
 **Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.**
 
 
-## List of Variables in tidy dataset
+## List of Variables in tidy dataset (Step 5)
 
  [1] "Time Domain Body Activity  Average-X"              
  [2] "Time Domain Body Activity  Average-Y"              
@@ -150,7 +150,7 @@ This dataset is distributed AS-IS and no responsibility implied or explicit can 
 [19] "Frequency Domain Body Activity Mag Average"        
 [20] "Frequency Domain BodyBody Activity JerkMag Average"
 
-## List of variables in the merged dataset for mean and statdard deviations
+## List of variables in the merged dataset for mean and statdard deviations (Step 3 and 4)
  [1] "Time Domain Body Activity  Average-X"                         
  [2] "Time Domain Body Activity  Average-Y"                         
  [3] "Time Domain Body Activity  Average-Z"                         
